@@ -15,24 +15,20 @@ struct node{
     node(int key):key(key),pri(ran()){}
     node():pri(ran()){}
 };
-typedef node* pnode; 
-void pull(pnode a){
-    a->sz=1;
-    if(!a->left)a->sz+=a->left->sz;
-    if(!a->right)a->sz+=a->right->sz;
-}
+typedef node* pnode;
 int sz(pnode t){
 	return (t)?t->sz:0;
 }
 void update(pnode t){
-	t->sz=1+sz(t->left)+sz(t->right);
+	if(t)t->sz=1+sz(t->left)+sz(t->right);
+	else t->sz=0;
 }
 void merge(pnode &t,pnode a,pnode b){//a<b, t is target
-    if(!a||!b)
+    if(!a||!b){
 		if(a)t=a;
 		else if(b)t=b;
-		else{t=NULL;return;}
-	else{
+		else return;
+	}else{
 		if(a->pri < b->pri){//a goes up
 			merge(a->right,a->right,b);
 			t=a;
