@@ -13,22 +13,25 @@ int main(){
 	Hirasawa_Yui_My_Wife
     while(cin>>n>>m){
         for(int i=1;i<=n;++i){
+			up[i][0]=0;
             cin>>g[i][1];up[i][1]=g[i][1];
             for(int j=2;j<=m;++j){
                 cin>>g[i][j];
                 up[i][j]=up[i][j-1]+g[i][j];
             }
         }
-        int best=-8e7;
+        int best=-2147483647,toupdate;
         for(int i=1;i<=m;++i){
-			for(int j=1;j<=i;++j){//[j,i]
-				tmpsum[1]=dp[1]=sum(1,j,i);
-				for(int k=2;k<=n;++k)tmpsum[k]=sum(k,j,i),dp[k]=max(0,dp[k-1]+tmpsum[k]);
+			for(int j=i;j<=m;++j){//[i,j]
+				tmpsum[1]=sum(1,i,j);
+				dp[1]=max(0,tmpsum[1]);
+				for(int k=2;k<=n;++k)tmpsum[k]=sum(k,i,j),dp[k]=max(0,dp[k-1]+tmpsum[k]);
 				int M=*max_element(tmpsum+1,tmpsum+n+1);
 				if(M<0)//all are negative
-					best=max(best,M);
+					toupdate=M;
 				else
-					best=max(best,*max_element(dp+1,dp+n+1));
+					toupdate=*max_element(dp+1,dp+n+1);
+				best=max(best,toupdate);
 			}
 		}
 		cout<<best<<'\n';
