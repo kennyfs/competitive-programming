@@ -1,4 +1,3 @@
-TIOJ/*test
-TIOJ/tioj[0-9]*$
-ZeroJudge/zj[a-z]?test
-ZeroJudge/zj[a-z]?$
+*.o
+[a-zA-Z]*[0-9]*
+[a-zA-Z]*[0-9]*test
