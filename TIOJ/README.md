@@ -16,4 +16,8 @@
 暑假Day17，[1211](https://tioj.ck.tp.edu.tw/problems/1211)：  
 複習一下Prim，用最普通的heap(priority queue)寫  
 [1711](https://tioj.ck.tp.edu.tw/problems/1711)，[EEK](https://slides.com/fhvirus/eek#/1)  
-樹dp，[參考](https://oi.ototot.tw/2018/11/tioj-1711-apple-tree.html)
+樹dp，[參考](https://oi.ototot.tw/2018/11/tioj-1711-apple-tree.html)  
+  
+暑假Day22，[1306](https://tioj.ck.tp.edu.tw/problems/1306)：  
+為了寫[複賽pA](https://tioj.ck.tp.edu.tw/problems/2155)，早上讀了[字串匹配](http://slides.com/justinlai2003/deck-56d971)，複習了hash Z KMP，然後下午看複賽題解的時候發現Suffix array，於是研究了一下，參考[山姆的這篇](https://sam571128.codes/2020/10/02/Suffix-Array/)，使用prefix doubling algorithm，把原字串先做一次，然後用非嚴格遞增的l和非嚴格遞減的r夾出一樣的範圍。原本是要先二分搜，然後調整lr的位置，但後來發現因為是非嚴格遞增/減，所以均攤O(字串長)沒問題，而且比較簡潔，又不會出問題。  
+加上以前資讀時寫的hash。
