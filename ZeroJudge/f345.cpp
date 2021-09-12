@@ -1,13 +1,13 @@
 #include <iostream>
-#define ll long long
 #define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
-ll dp[110];
+int const N=1e6+10;
+int n,a[N];
 int main(){
 	Hirasawa_Yui_My_Wife
-	dp[0]=dp[1]=1;
-	for(int i=2;i<100;++i)dp[i]=dp[i-1]+dp[i-2];
-	int n;
-	while(cin>>n)cout<<dp[n]<<'\n';
+	cin>>n;
+	for(int i=0;i<n;++i)cin>>a[i];
+	for(int i=n-1;i>=0;--i)cout<<a[i]<<' ';
+	cout<<'\n';
 }
-//裸費氏數列
+//水題
