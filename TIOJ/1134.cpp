@@ -1,3 +1,7 @@
+#pragma GCC optimize(2)
+#pragma GCC optimize(3)
+#pragma GCC optimize("Ofast")
+#pragma GCC optimize("inline")
 #include <iostream>
 #include <utility>
 #include <algorithm>
@@ -6,33 +10,31 @@
 #define F first
 #define S second
 using namespace std;
-int const N=200+10;
-int t,n,m;
-int a[N][N],pre[N][N],b[N];
-pii frt[N];
-int main(){
+int t,n,m,tmp;
+int pre[201][201],b[201];
+pii frt[201];
+signed main(){
 	Hirasawa_Yui_My_Wife
 	cin>>t;
 	while(t--){
 		cin>>n>>m;
-		for(int i=1;i<=n;++i){
+		for(register int i=1;i<=n;++i){
 			pre[i][0]=0;
-			for(int j=1;j<=m;++j){
-				cin>>a[i][j];
-				a[i][j]=a[i][j]?-1:1;
-				pre[i][j]=pre[i][j-1]+a[i][j];
+			for(register int j=1;j<=m;++j){
+				cin>>tmp;
+				pre[i][j]=pre[i][j-1]+(tmp?-1:1);
 			}
 		}
 		int ans=0;
-		for(int i=1;i<=m;++i){
-			for(int j=i;j<=m;++j){
+		for(register int i=1;i<=m;++i){
+			for(register int j=i;j<=m;++j){
 				frt[0]={0,0};
-				for(int k=1;k<=n;++k){
+				for(register int k=1;k<=n;++k){
 					frt[k]={frt[k-1].F+pre[k][j]-pre[k][i-1],k};
 				}
 				sort(frt,frt+n+1);
 				int best=0,sec=-1;
-				for(int k=1;k<=n;++k){
+				for(register int k=1;k<=n;++k){
 					if(frt[k].F-frt[best].F>0){
 						if(frt[k].S>frt[best].S)ans=max(ans,(frt[k].S-frt[best].S)*(j-i+1));
 					}else{
