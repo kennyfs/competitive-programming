@@ -1,11 +1,16 @@
 #include <iostream>
 #include <algorithm>
+#include <queue>
 #define INF 8000000
 #define GOAL 10
+#define ll long long
 using namespace std;
 int const N=1e3+10;
-int s[N][N],dp[N][N],all[N*N];
+int s[N][N],dp[N][N];
+struct g{int t,v;}all[N*N];
 int n,m,k,u;
+bool operator<(g a,g b){return a.v>b.v;}
+priority_queue<g> pq;
 int main(){
 	cin>>n>>m>>k>>u;
 	for(int i=1;i<=n;++i){
@@ -20,12 +25,12 @@ int main(){
 	}
 	for(int i=1;i<=n;++i){
 		for(int j=1;j<=m;++j){
-			all[(i-1)*m+j-1]=s[i][j];
+			all[(i-1)*m+j-1]={INF,s[i][j]};
 		}
 	}
 	while(u--){
 		cin>>t>>x>>y;
-		if(t<=x+y-1)s[x][y]=-INF;
+		if(t<=x+y-1)s[x][y]=-INF,all[(x-1)*m+y-1].t=t-1;
 	}
 	//dp
 	int dpminstep=INF,greedyminstep=INF;
@@ -38,12 +43,18 @@ int main(){
 			if((dp[i][j]<<1)>=GOAL)dpminstep=min(dpminstep,i+j-1);
 		}
 	}
-	sort(all,all+n*m,[&](int a,int b){return a>b;});
-	int now=0;
-	for(int i=0;i<n*m;++i){
-		now+=all[i];
-		if(now>=GOAL){greedyminstep=i+1;break;}
+	sort(all,all+n*m,[&](g a,g b){return a.t<b.t;});
+	int l=1,r=n*m+1;//[l,r)
+	while(l<r){
+		while(!pq.empty())pq.pop();
+		ll now=0;int M=(l+r)>>1;
+		for(int i=0;i<n*m;++i){
+			if(pq.size()==M){if(all[i].v>pq.top().v)now+=all[i].v-pq.top().v,pq.pop(),pq.push(all[i]);}
+			else{pq.push(all[i]);now+=all[i].v;}
+		}
+		if(GOAL<=now)r=M;
+		else l=M+1;
 	}
-	if(dpminstep==INF&&greedyminstep==INF)cout<<"NO Giita QQ";
-	else cout<<min(dpminstep,greedyminstep);
+	if(dpminstep==INF&&l==n*m+1)cout<<"NO Giita QQ";
+	else cout<<min(dpminstep,l);
 }
