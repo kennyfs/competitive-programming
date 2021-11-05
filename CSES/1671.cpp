@@ -37,7 +37,10 @@ int main(){
         dis[cur.S]=cur.F;
         vis[cur.S]=1;
         for(auto [v,w]:G[cur.S]){
-            pq.push({cur.F+w,v});
+			if(dis[v]>cur.F+w){
+				pq.push({cur.F+w,v});
+				dis[v]=cur.F+w;
+			}
         }
     }
     for(int i=1;i<=n;++i)cout<<dis[i]<<' ';

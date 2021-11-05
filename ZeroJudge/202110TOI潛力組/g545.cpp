@@ -16,8 +16,8 @@ int main(){
     int a=1,b=0;
     for(int i=1;i<n;++i){
         swap(a,b);//always a->b
-        for(int i=0;i<N;++i)dp[b][i]=0;
-        for(int j=0;j<=n;++j){//任何時候，左括號一定比較多
+        for(int j=0;j<N;++j)dp[b][j]=0;
+        for(int j=0;j<=i+1;++j){//任何時候，左括號一定比較多
             if(dp[a][j]){
                 switch(s[i]){
                     case '?':
