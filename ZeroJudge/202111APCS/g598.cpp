@@ -7,7 +7,7 @@
 #define S second
 #define pb push_back
 using namespace std;
-const int N=2e5+10;
+const int N=2e4+10;
 int n,m,p,k,color[N];
 vector<int> G[N];
 int oc(int c){return (c%2)?c+1:c-1;}

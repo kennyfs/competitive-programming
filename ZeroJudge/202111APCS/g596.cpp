@@ -1,7 +1,7 @@
 #include <iostream>
 #define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
-const int N=1e4+10;
+const int N=1e2+10;
 int n,m,h;
 bool xline[N][N],yline[N][N],dot[N][N];
 int nxt[4][2]={{0,1},{0,-1},{1,0},{-1,0}};
