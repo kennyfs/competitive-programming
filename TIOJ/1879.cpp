@@ -46,7 +46,7 @@ int main(){
 		G[v].pb(ind);
 		E[ind++]=u;
 	}
-	for(int i=1;i<=n;++i)
+	for(int i=1;i<=n;++i){
 		if(!vis[i]){
 			dfs(i);
 			++bcctot;
