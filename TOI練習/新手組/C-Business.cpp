@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstring>
+#define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
 const int N=3e1+10,D=1e2+10,S=9e4+10;
 int n,a[N],add[N];
 int main(){
+    Hirasawa_Yui_My_Wife
 	int ind=1;
 	while(cin>>a[ind]&&a[ind++]);
 	n=ind-2;

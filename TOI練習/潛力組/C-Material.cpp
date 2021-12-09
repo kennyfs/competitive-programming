@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
 const int N=4e5+10;
 int n,q;
@@ -21,6 +22,7 @@ int query(int pos){
 }
 int ans[N];
 int main(){
+    Hirasawa_Yui_My_Wife
     cin>>n;
     for(int i=1;i<=n;++i)cin>>M[i];
     cin>>q;

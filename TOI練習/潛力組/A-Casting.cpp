@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #define pb push_back
+#define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
 const int N=20;
 int n;
@@ -9,6 +10,7 @@ struct edge{
 };
 vector<edge> E;
 int main(){
+    Hirasawa_Yui_My_Wife
     cin>>n;
     int a;
     for(int i=0;i<n;++i){

@@ -1,8 +1,10 @@
 #include <iostream>
+#define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
 const int N=3e2+10;
 int n,m,l[N][2];
 int main(){
+    Hirasawa_Yui_My_Wife
 	cin>>n>>m;
 	for(int i=1;i<=n;++i)cin>>l[i][0];
 	int a=1,b=0;
