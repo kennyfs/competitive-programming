@@ -3,7 +3,7 @@
 #define INF 8e7*25
 #define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
-const int N=1e5+10,K=3;
+const int N=1e5+10,K=316;
 int n,q,a[N];
 int smin[N/K+10],smax[N/K+10];
 signed main(){
