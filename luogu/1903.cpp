@@ -2,6 +2,7 @@
 #include <cmath>
 #include <vector>
 #include <stack>
+#include <algorithm>
 #define pb push_back
 #define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using namespace std;
@@ -12,7 +13,7 @@ struct query{
 };
 int l,r,t,p,cnt,A[N],s[NUM],ans[N];
 vector<query> Q[54][54],R;
-stack<query> changed;
+vector<query> changed;
 void move(int ql,int qr,int qt){
     while(l>ql)cnt+=!s[A[--l]]++;//l go to left
     while(r<qr)cnt+=!s[A[++r]]++;//r go to right
@@ -21,7 +22,7 @@ void move(int ql,int qr,int qt){
     while(t<qt){
         ++t;
         if(p>=R.size()||t<R[p].t)continue;
-        changed.push({A[R[p].a],R[p].b,R[p].a});//save changing a to b, at position t
+        changed.pb({A[R[p].a],R[p].b,R[p].a});//save changing a to b, at position t
         if(ql<=R[p].a&&R[p].a<=qr){
             cnt-=!--s[A[R[p].a]];
             cnt+=!s[R[p].b]++;
@@ -32,15 +33,15 @@ void move(int ql,int qr,int qt){
 }
 void undo(){
     //undo
-    while(!changed.empty()){
-        auto [ori,to,x]=changed.top();
-        changed.pop();
+    reverse(changed.begin(),changed.end());
+    for(auto [ori,to,x]:changed){
         if(l<=x&&x<=r){
-            cnt+=!s[to]++;
-            cnt-=!--s[ori];
+            cnt+=!s[ori]++;
+            cnt-=!--s[to];
         }
         A[x]=ori;
     }
+    changed.clear();
 }
 void MO(int i,int j){
     t=p=0;
@@ -59,7 +60,7 @@ signed main(){
     for(int i=1,tmpa,tmpb;i<=q;++i){
         cin>>op>>tmpa>>tmpb;
         if(op=='Q')
-            Q[tmpa/k][tmpa/k].pb({tmpa,tmpb,i});
+            Q[tmpa/k][tmpb/k].pb({tmpa,tmpb,i});
         else
             R.pb({tmpa,tmpb,i});
     }
