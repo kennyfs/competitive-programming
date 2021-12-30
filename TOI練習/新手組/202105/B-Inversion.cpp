@@ -3,7 +3,6 @@ using namespace std;
 const int N=300+10;
 string s,ans;
 int n;
-I-evol+
 int main(){
     cin>>s;
     n=s.size();
