@@ -8,14 +8,15 @@ int n,m,r[N],s[N],d[N],maxs;
 int const inf=8e7*wiwiho;
 bool check(int c,int e,int t){
 	for(int i=1;i<=e;++i){
-		if(!d[i])continue;
+		if(s[i]<c)continue;
+		if(!d[i])return 1;
 		//a_n=(s[i]-(n-1)*d[i])
 		//a_n<c and a_n-1>=c
 		//(s[i]-(n-1)*d[i])<c
 		//n-1>(s[i]-c)/d[i]
 		//n>(s[i]-c)/d[i]+1
-		int tmp=(s[i]-c)/d[i]+2;
-		if(tmp>1)t-=tmp-1;
+		int tmp=(s[i]-c)/d[i]+2;//minimum int n
+		t-=tmp-1;
 		if(t<0)return 0;
 	}
 	return 1;
@@ -32,19 +33,21 @@ signed main(){
 		t=T;
 		int ans=0;
 		//二分搜打掃的最少灰塵量的房間是多少灰塵
-		int l=1,r=maxs;//[l,r]
+		int l=0,r=maxs+5;//[l,r)
 		while(l<r){
 			int m=l+r>>1;
 			if(check(m,e,t))r=m;
 			else l=m+1;
 		}
+		//如果有d=0的房間，他的s必定<=l
 		for(int i=1;i<=e;++i){
-			if(!d[i])ans+=
+			if(s[i]<l||!d[i])continue;
 			int tmp=(s[i]-l)/d[i]+1;
-			if(tmp<1)continue;
-			//a_1 add to a_tmp
 			ans+=(2*s[i]-(tmp-1)*d[i])*tmp/2;
+			t-=tmp;
 		}
+		if(t)ans+=t*l;
+		cout<<e<<' '<<l<<'\n';
 		finalans=max(finalans,ans);
 	}
 	cout<<finalans;
