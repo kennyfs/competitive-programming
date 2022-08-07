@@ -1,15 +1,17 @@
 #include "bits/stdc++.h"
+#define Hirasawa_Yui_My_Wife ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define pii pair<int,int>
 using namespace std;
 int connum,concol,condi;//NESW
 int curnum,curcol,curdi;
-int numtonum[256],coltonum[256];
-char numtocol[5],numtotext[15],ditotext[5];
-int firstcon[6];
+int numtonum[300],coltonum[300];
+char numtotext[20],ditotext[10];
+string numtocol[10];
+int firstcon[10];
 int num_double,doubledi;
 int point[2];
-bool nopai[5][5];//nopai[i][j]==1 <=> i don't have j (j is a color)
-bool paipresent[5][15];
+bool nopai[10][10];//nopai[i][j]==1 <=> i don't have j (j is a color)
+bool paipresent[10][20];
 istream& operator>>(istream& in, pii &a){
 	char c,num;
 	in>>c>>num;
@@ -25,6 +27,7 @@ void reset(){
 	memset(paipresent,0,sizeof(paipresent));
 }
 int main(){
+	Hirasawa_Yui_My_Wife
 	for(int i=1;i<=9;++i){
 		numtonum[i+'0']=i;
 		numtotext[i]=i+'0';
@@ -38,10 +41,11 @@ int main(){
 	coltonum['D']=2;
 	coltonum['H']=3;
 	coltonum['S']=4;
-	numtocol[1]='C';
-	numtocol[2]='D';
-	numtocol[3]='H';
-	numtocol[4]='S';
+	numtocol[1]="C";
+	numtocol[2]="D";
+	numtocol[3]="H";
+	numtocol[4]="S";
+	numtocol[5]="NT";
 	numtotext[14]='A';
 	numtotext[13]='K';
 	numtotext[12]='Q';
@@ -150,3 +154,4 @@ int main(){
 		cout<<'\n';
 	}
 }
+//Still WA

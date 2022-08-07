@@ -1,2 +1,3 @@
 *.o
-[a-zA-Z]*[0-9]*test
+*test*
+.vscode
