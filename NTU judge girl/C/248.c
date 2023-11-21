@@ -2,9 +2,8 @@
 int check(int x,int y,int num[9][9],int ans[9][9]){
 	if(x>=9||y>=9||x<0||y<0)return 1;
 	int ones=0,blank=0;
-	for(int dx=-1;dx<=1;++dx){
-		for(int dy=-1;dy<=1;++dy){
-			int tx=x+dx,ty=y+dy;
+	for(int tx=x-1;tx<=x+1;++tx){
+		for(int ty=y-1;ty<=y+1;++ty){
 			if(tx>=9||ty>=9||tx<0||ty<0)continue;
 			if(ans[tx][ty]==1)ones++;
 			else if(ans[tx][ty]==-1)blank++;
@@ -13,21 +12,24 @@ int check(int x,int y,int num[9][9],int ans[9][9]){
 	if(ones+blank<num[x][y]||ones>num[x][y])return 0;
 	return 1;
 }
+int solve(int x,int y,int num[9][9],int ans[9][9]);
+int recursion(int x,int y,int num[9][9],int ans[9][9]){
+	int ok=0;
+	if(check(x,y,num,ans)&&check(x-1,y-1,num,ans)&&check(x-1,y,num,ans)&&check(x-1,y+1,num,ans)&&check(x,y-1,num,ans)){
+		if(y==8)ok|=solve(x+1,0,num,ans);
+		else ok|=solve(x,y+1,num,ans);
+	}
+	return ok;
+}
 int solve(int x,int y,int num[9][9],int ans[9][9]){
 	if(x==9&&y==0)return 1;
-	int ok=0;
+	
 	ans[x][y]=1;
-	if(check(x,y,num,ans)&&check(x-1,y-1,num,ans)&&check(x-1,y,num,ans)&&check(x-1,y+1,num,ans)&&check(x,y-1,num,ans)){
-		if(y==8)ok|=solve(x+1,0,num,ans);
-		else ok|=solve(x,y+1,num,ans);
-	}
-	if(ok)return 1;
+	if(recursion(x,y,num,ans))return 1;
+	
 	ans[x][y]=0;
-	if(check(x,y,num,ans)&&check(x-1,y-1,num,ans)&&check(x-1,y,num,ans)&&check(x-1,y+1,num,ans)&&check(x,y-1,num,ans)){
-		if(y==8)ok|=solve(x+1,0,num,ans);
-		else ok|=solve(x,y+1,num,ans);
-	}
-	if(ok)return 1;
+	if(recursion(x,y,num,ans))return 1;
+	
 	ans[x][y]=-1;
 	return 0;
 }
